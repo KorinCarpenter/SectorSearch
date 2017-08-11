@@ -1,0 +1,163 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body>
+
+  <script src="https://code.jquery.com/jquery-3.0.0.js"></script>
+
+  <script>
+
+    var searchResults = "nothing to see";
+    function displaySearchResults(x) {
+      alert(x);
+      return false;
+    }
+
+    function searchTest (searchTerms) {
+      //alert("You Did It!");
+      //event.preventDefault;
+      //var searchData = '{"query":{"bool":{"must":[{"term":{"Subject_Issue":"race"}}],"must_not":[],"should":[]}},"from":0,"size":10,"sort":[],"aggs":{}}';
+      //var searchData = '{"query":{"bool":{"must":[{"term":{"Source_Author":"Feeding"}}],"must_not":[],"should":[]}},"from":0,"size":10,"sort":[],"aggs":{}}';
+      //var searchData = '{"query":{"bool":{"must":[{"term":{"Subject_issue":"race"}}],"must_not":[],"should":[]}},"from":0,"size":10,"sort":[],"aggs":{}}';
+      //var searchData = '{"query":{"bool":{"must":[{"term":{"Subject_issue":"race"}}],"must_not":[],"should":[]}},"from":0,"size":10,"sort":[],"aggs":{}}';
+      //var searchData = '{"query":{"bool":{"must":[{"term":{"Subject_issue":"race"}},{"term":{"Subject_issue":"civil"}}],"must_not":[],"should":[]}},"from":0,"size":10,"sort":[],"aggs":{}}';
+      //alert(searchData);
+      if (searchTerms != "") {
+        //alert('Checkpoint 1');
+        searchData = '{"query":{"bool":{"must":['+searchTerms+'],"must_not":[],"should":[]}},"from":0,"size":10,"sort":[],"aggs":{}}';
+      }
+      console.log(searchData);
+      $.ajax({
+        type: "POST",
+        url: "https://search-privatetest-fgzemgwyezdzxdi6tawxa6knju.us-east-1.es.amazonaws.com/*/_search?pretty",
+        //url: "http://104.131.26.177:9200/astonishingbeta/_search?pretty&filter_path=hits.hits._source&_source=Source_title,Last_Update",
+        //url: "http://wkkf-elasticsearch.xton.com:9200/astonishingbeta/_search?pretty&filter_path=hits.hits._source&_source=Source_title,Last_Update",
+        data: searchData,
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function(data, textStatus, request){
+          var responseData = JSON.stringify(data);
+          //alert(a);
+          $("#searchOutput").html(responseData);
+        },
+        error: function(){
+          alert("whoops didn\'t find much here");
+        }
+      });
+      return false;
+    } 
+
+    /*
+    function performSearch() {
+      var a = $("#searchForm").serializeArray();
+      var jsondata = "[";
+      $.each(a, function() {
+        if (this.value != "") {
+        jsondata = jsondata+this.name+":"+this.value+",";  
+        } 
+      });
+      alert(jsondata);
+      return false;
+    }
+    */
+
+    function doSearch() {
+      //alert("Testing 123!");
+      var a = $("#searchForm").serializeArray();
+      var jsondata = "";
+      $.each(a, function() {
+        if (this.value != "") {
+          jsondata = jsondata+"{\"term\":{\""+this.name+"\":\""+this.value+"\"}},";
+        } 
+      });
+      jsondata = jsondata.slice(0, -1);
+      //alert(jsondata);
+      searchTest(jsondata);
+      return false;
+    }
+
+
+  </script>
+
+
+<table border="1" width="100%">
+<tr>
+<td align="left" valign="top">
+
+<!--
+Test Form:
+<br/>
+<form id="testForm" action="#" onsubmit="event.preventDefault(); searchTest();">
+  Search Input: <input name="searchInput" type="text">
+  <input id="submitSearch" type="submit">
+</form>
+<br/><br/>
+-->
+
+<form id="searchForm" action="#" onsubmit="event.preventDefault(); doSearch();">
+  Advanced Federated Search
+  <br/><br/>
+  Keywords: <!-- <button id="keywordHelp" type="" name="" value="">Help</button> -->
+  <br/>
+  <textarea id="keywords" name="Keywords" rows="2" cols="50"></textarea> 
+  <br/><br/>
+  Author: <!-- <button id="authorHelp" type="" name="" value="">Help</button> -->
+  <br/>
+  <input id="author" type="text" name="Source_Author" size="50" />
+  <br/><br/>
+  Title: <!-- <button id="titleHelp" type="" name="" value="">Help</button> -->
+  <br/>
+  <input id="title" type="text" name="Source_Title" size="50" />
+  <br/><br/>
+  Description: <!-- <button id="descriptionHelp" type="" name="" value="">Help</button> -->
+  <br/>
+  <textarea id="description" name="Description" rows="2" cols="50"></textarea> 
+  <br/><br/>
+  Source Type: <!-- <button id="clearSourceTypes" type="" name="" value="">Clear List</button> <button id="sourceTypeHelp" type="" name="" value="">Help</button> -->
+  <br/>
+  <textarea id="sourceType" name="Source_Type" rows="2" cols="50"></textarea> 
+  <br/><br/>
+  Source Format: <!-- <button id="clearSourceFormats" type="submit" name="" value="">Clear List</button> <button id="sourceFormatHelp" type="" name="" value="">Help</button> -->
+  <br/>
+  <textarea id="sourceFormat" name="Source_Format" rows="2" cols="50"></textarea> 
+  <br/><br/>
+  Subject/Issue Area: <!-- <button id="clearSubjectIssueArea" type="" name="" value="">Clear List</button> <button id="subjectIssueAreaHelp" type="" name="" value="">Help</button> -->
+  <br/>
+  <textarea id="subjectIssueArea" name="Subject_Issue" rows="2" cols="50"></textarea> 
+  <br/><br/>
+  StrategyApproach: <!-- <button id="clearSubjectIssueArea" type="" name="" value="">Clear List</button> <button id="strategyApproachHelp" type="" name="" value="">Help</button> -->
+  <br/>
+  <textarea id="strategyApproach" name="Strategy_Approach" rows="2" cols="50"></textarea> 
+  <br/><br/>
+  Geographic Focus: <!-- <button id="clearSubjectIssueArea" type="" name="" value="">Clear List</button> <button id="geographicFocusHelp" type="" name="" value="">Help</button> -->
+  <br/>
+  <textarea id="geographicFocus" name="Geographic_Focus" rows="2" cols="50"></textarea> 
+  <br/><br/>
+  Population: <!-- <button id="clearSubjectIssueArea" type="" name="" value="">Clear List</button> <button id="populationHelp" type="" name="" value="">Help</button> -->
+  <br/>
+  <textarea id="population" name="Population" rows="2" cols="50"></textarea> 
+  <br/><br/>
+  Publication Date: <!-- <button id="publicationDateHelp" type="" name="" value="">Help</button> -->
+  <br/>
+  <input id="publicationDate" name="publicationDate"/> <!-- <button id="fillPublicationFromDate" type="" name="" value="">Select Date</button> -->
+  <br/><br/>
+  <button type="submit" name="performSearch" value="performSearch">Perform Search</button>
+</form>
+</td>
+<td align="left" valign="top">
+Search Results:
+<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br/>
+<div id="searchOutput">
+(nothing)
+</div>
+</td></tr>
+</table>
+
+</body>
+</html>
+
