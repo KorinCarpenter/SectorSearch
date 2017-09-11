@@ -18,7 +18,7 @@ do
   sed 's/"title":/"Source_Title":/g' |
   sed 's/"permalink":/"URL":/g' |
   sed 's/"geo_coverages":/"Geographic_Focus":/g' |
-  sed 's/}/,"Keywords": "${i}"}/g' |
+  sed "s/}/,\"Keywords\": \"${i}\"}/g" |
 
   {
     while read line
