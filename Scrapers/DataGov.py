@@ -19,6 +19,7 @@ while start < 198000:
         jsonData = rsp.json()
         with open(fileName,'w') as outfile:
             json.dump(jsonData, outfile)
+            outfile.close()
     else:
         errorinfo = "Something went wrong with the " + block + " block"
         errors = errors.append(errorinfo)

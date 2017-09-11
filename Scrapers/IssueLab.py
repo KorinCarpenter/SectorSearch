@@ -21,6 +21,7 @@ for issue in Issues:
         jsonFileName = "../Data/IssueLab/ScrapedData_" + filename + ".json"
         with open(jsonFileName,'w') as outfile:
             json.dump(jsonData, outfile)
+            outfile.close()
     else:
         errorinfo = "Something went wrong with " + issue
         errors = errors.append(errorinfo)
