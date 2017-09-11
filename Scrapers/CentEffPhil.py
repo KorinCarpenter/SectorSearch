@@ -6,7 +6,7 @@ import datetime
 import json
 
 index = 1
-outfile = open("CEP.json","w")
+outfile = open("../Data/CentEffPhil/UploadData.json","w")
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1)'}
 page = requests.get("http://efphilanthropy.wpengine.com/research/publications/",headers=headers)
 parsed = BS(page.content, 'html.parser')

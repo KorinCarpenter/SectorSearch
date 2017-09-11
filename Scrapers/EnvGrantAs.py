@@ -7,7 +7,7 @@ import datetime
 
 entries = 1
 pagenumber = 0
-outfile = open("EGA.json","w")
+outfile = open("../Data/EnvGrantAs/UploadData.json","w")
 headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1)'}
 while True:
     url = "https://ega.org/learn/publications?page="+str(pagenumber)

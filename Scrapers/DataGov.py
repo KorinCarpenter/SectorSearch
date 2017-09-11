@@ -10,10 +10,10 @@ while start < 198000:
     block = str(start)
     start = start + 1000
     URL = "https://catalog.data.gov/api/3/action/package_search?rows=1000&start=" + block
-    
+
     # send GET request
     rsp = requests.get(URL)
-    fileName = "./DataGovFiles/DataGov_" + block + ".json"
+    fileName = "../Data/DataGov/ScrapedData_" + block + ".json"
     # check response status code
     if (rsp.status_code == 200):
         jsonData = rsp.json()
@@ -24,4 +24,3 @@ while start < 198000:
         errors = errors.append(errorinfo)
         #raise Exception("Bad status code")
         continue
-

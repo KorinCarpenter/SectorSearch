@@ -7,7 +7,7 @@ import datetime
 
 entries = 1
 pagenumber = 1
-outfile = open("GeoFunders.json","w")
+outfile = open("../Data/GeoFund/UploadData.json","w")
 while True:
     url = "https://www.geofunders.org/resources?page="+str(pagenumber)
     page = requests.get(url)

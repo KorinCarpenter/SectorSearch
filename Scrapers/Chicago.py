@@ -7,7 +7,7 @@ import datetime
 
 entries = 1
 pagenumber = 1
-outfile = open("CityofChicago.json","w")
+outfile = open("../Data/Chicago/UploadData.json","w")
 while True:
     page = requests.get("https://data.cityofchicago.org/browse?&page="+str(pagenumber))
     parsed = BS(page.content, 'html.parser')

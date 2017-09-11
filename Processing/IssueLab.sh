@@ -5,18 +5,18 @@ declare -a arr=("Aging" "AgricultureandFood" "AnimalWelfare" "ArtsandCulture" "A
 
 for i in "${arr[@]}"
 do
-  infile='./IssueLabFiles/'$i'.json'
-  outfile='./CleanedFiles/'$i'.json'
+  infile='../Data/IssueLab/ScrapedData_'$i'.json'
+  outfile='../Data/IssueLab/UploadData_'$i'.json'
   count=1
   sed 's/^.\{15\}//' $infile |
   sed -e $'s/}, /}\\\n/g' |
-  sed 's/"publication_date":/"publicationDate":/g' | 
-  sed 's/"issues":/"Subject_Issue":/g' | 
-  sed 's/"pubtypes":/"Source_Type":/g' | 
-  sed 's/"authors":/"Source_Author":/g' | 
-  sed 's/"description":/"Description":/g' | 
-  sed 's/"title":/"Source_Title":/g' | 
-  
+  sed 's/"publication_date":/"publicationDate":/g' |
+  sed 's/"issues":/"Subject_Issue":/g' |
+  sed 's/"pubtypes":/"Source_Type":/g' |
+  sed 's/"authors":/"Source_Author":/g' |
+  sed 's/"description":/"Description":/g' |
+  sed 's/"title":/"Source_Title":/g' |
+
   {
     while read line
     do

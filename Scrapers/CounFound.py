@@ -12,7 +12,7 @@ topics = ["advocacy-lobbying","boards-governance","ceo-leadership-development","
           "self-dealing","tax-filing-audits"]
 for topic in topics:
     entries = 1
-    filename = "CouncilonFoundations"+topic.replace('-','')+".json"
+    filename = "../Data/CounFound/UploadData_"+topic.replace('-','')+".json"
     outfile = open(filename,"w")
     pagenumber = 0
     while True:

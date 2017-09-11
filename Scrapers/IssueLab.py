@@ -18,7 +18,7 @@ for issue in Issues:
     # check response status code
     if (rsp.status_code == 200):
         jsonData = rsp.json()
-        jsonFileName = "./IssueLabFiles/" + filename + ".json"
+        jsonFileName = "../Data/IssueLab/ScrapedData_" + filename + ".json"
         with open(jsonFileName,'w') as outfile:
             json.dump(jsonData, outfile)
     else:
@@ -26,4 +26,3 @@ for issue in Issues:
         errors = errors.append(errorinfo)
         #raise Exception("Bad status code")
         continue
-
