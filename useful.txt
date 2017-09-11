@@ -1,0 +1,2 @@
+# Run from within Data/ directory, this creates a folder for each scraper (and therefore each data source)
+ls ../Scrapers/ | awk -F. '{print $1}' | xargs mkdir
