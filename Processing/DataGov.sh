@@ -3,8 +3,8 @@
 count=1
 for ((i=172000;i<198000;i+=1000))
 do
-  infile='~/SectorSearch/Data/DataGov/ScrapedData_'$i'.json'
-  outfile='~/SectorSearch/Data/DataGov/UploadData_'$i'.json'
+  infile='../Data/DataGov/ScrapedData_'$i'.json'
+  outfile='../Data/DataGov/UploadData_'$i'.json'
   sed 's/.*results": \[//' $infile > Step$i.json
 
   ./DataGov.pl Step$i.json > temp$i.json

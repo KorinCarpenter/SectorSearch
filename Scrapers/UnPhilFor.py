@@ -8,7 +8,7 @@ import datetime
 
 entries = 1
 pagenumber = 0
-outfile = open("~/SectorSearch/Data/UnPhilFor/UploadData.json","w")
+outfile = open("../Data/UnPhilFor/UploadData.json","w")
 while True:
     page = requests.get("https://www.unitedphilforum.org/resources/search?keys=&page="+str(pagenumber))
     parsed = BS(page.content, 'html.parser')

@@ -6,7 +6,7 @@ import datetime
 import json
 
 index = 1
-outfile = open("~/SectorSearch/Data/LGBTFund/UploadData.json","w")
+outfile = open("../Data/LGBTFund/UploadData.json","w")
 page = requests.get("https://www.lgbtfunders.org/research/",verify=False)
 parsed = BS(page.content, 'html.parser')
 content = parsed.find_all('div',class_="col-md-3 col-sm-6")
