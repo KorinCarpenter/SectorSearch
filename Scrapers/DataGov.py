@@ -13,7 +13,7 @@ while start < 198000:
 
     # send GET request
     rsp = requests.get(URL)
-    fileName = "../Data/DataGov/ScrapedData_" + block + ".json"
+    fileName = "~/SectorSearch/Data/DataGov/ScrapedData_" + block + ".json"
     # check response status code
     if (rsp.status_code == 200):
         jsonData = rsp.json()
