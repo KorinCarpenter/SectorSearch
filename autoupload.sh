@@ -16,7 +16,10 @@ do
         upinfo="${index}/${topic}"
         URLAddition="$(echo ${upinfo} | awk '{print tolower($0)}')"
         URL="${UploadURL}/${URLAddition}/_bulk"
+        upfile="./Data/$s"
+        echo ${upfile}
         echo ${URL}
+#        curl -XPOST ${URL} --data-binary @$s
     fi
 done
 
