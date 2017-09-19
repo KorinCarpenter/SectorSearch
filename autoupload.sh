@@ -17,7 +17,9 @@ do
         URLAddition="$(echo ${upinfo} | awk '{print tolower($0)}')"
         URL="${UploadURL}/${URLAddition}/_bulk"
         upfile="./Data/$s"
-        curl -XPOST ${URL} --data-binary @${upfile}
+        echo "${URL}    ${upfile}"
+        sleep 0.5
+#        curl -XPOST ${URL} --data-binary @${upfile}
     fi
 done > /dev/null 2>&1
 
