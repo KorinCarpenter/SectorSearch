@@ -30,7 +30,7 @@ for topic in topics:
             if description:
                 outfile.write(', "Description": "'+description.get_text().replace('"','').replace('\n','')+'"')
             outfile.write(', "datafromresource": "councilonfoundationsorg"')
-            item_url = "https://www.cof.org"+title.get('href')
+            item_url = "https://www.cof.org"+str(title.get('href'))
             outfile.write(', "URL": "'+item_url+'"')
             outfile.write('}\n')
             entries += 1
