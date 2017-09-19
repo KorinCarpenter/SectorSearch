@@ -5,8 +5,8 @@ declare -a arr=("Aging" "AgricultureandFood" "AnimalWelfare" "ArtsandCulture" "A
 
 for i in "${arr[@]}"
 do
-  infile='../Data/IssueLab/ScrapedData_'$i'.json'
-  outfile='../Data/IssueLab/UploadData_'$i'.json'
+  infile='../Data/IssueLab_'$i'_Scraped.json'
+  outfile='../Data/IssueLab_'$i'_Upload.json'
   count=1
   sed 's/^.\{15\}//' $infile |
   sed -e $'s/}, /}\\\n/g' |
