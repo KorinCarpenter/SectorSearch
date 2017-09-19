@@ -1,13 +1,14 @@
 #!/bin/bash
 
-UploadFiles=Data/*
+UploadFiles="$(ls ~/SectorSearch/Data | basename _Upload.json | awk'{print tolower($0)}' | grep -v .json)"
 UploadURL="https://search-sectorsearch-7xx3kcc77prfjydwdcmxftyoni.us-east-1.es.amazonaws.com"
 
 for s in $UploadFiles
 do
-    i="$(basename $s _Upload.json)"
-    uploadfile="$(echo ${i} | awk '{print tolower($0)}' | grep -v .json)"
-    echo ${UploadURL}"/"${uploadfile}
+    echo $s
+#    i="$(basename $s _Upload.json)"
+#    uploadfile="$(echo ${i} | awk '{print tolower($0)}' | grep -v .json)"
+#    echo ${UploadURL}"/"${uploadfile}
 done
 
 
