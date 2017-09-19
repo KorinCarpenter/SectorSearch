@@ -1,6 +1,7 @@
 #!/bin/bash
 
 UploadFiles=Data/*
+UploadURL="https://search-sectorsearch-7xx3kcc77prfjydwdcmxftyoni.us-east-1.es.amazonaws.com"
 
 for s in $UploadFiles
 do
