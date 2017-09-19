@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SOURCES=Scrapers/*
+SOURCES=Data/*
 
 for s in $SOURCES
 do
