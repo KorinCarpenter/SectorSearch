@@ -7,7 +7,7 @@ import datetime
 
 entries = 1
 pagenumber = 1
-outfile = open("../Data/Chicago/UploadData.json","w")
+outfile = open("../Data/Chicago_Upload.json","w")
 while True:
     page = requests.get("https://data.cityofchicago.org/browse?&page="+str(pagenumber))
     parsed = BS(page.content, 'html.parser')
@@ -38,6 +38,8 @@ while True:
             final_date = datetime.datetime.strptime(publication_date, '%B %d %Y').strftime('%Y-%m-%d')
             outfile.write(', "publicationDate": "'+final_date+'"')
         outfile.write(', "datafromresource": "datacityofchicagoorg"')
+        url = issue.get('href')
+        outfile.write(', "URL": "'+url+'"')
         outfile.write(', "Geographic_Focus": "Chicago"')
         outfile.write('}\n')
         entries += 1

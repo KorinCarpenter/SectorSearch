@@ -6,7 +6,7 @@ import datetime
 import json
 
 index = 1
-outfile = open("../Data/LGBTFund/UploadData.json","w")
+outfile = open("../Data/LGBTFund_Upload.json","w")
 page = requests.get("https://www.lgbtfunders.org/research/",verify=False)
 parsed = BS(page.content, 'html.parser')
 content = parsed.find_all('div',class_="col-md-3 col-sm-6")
@@ -41,6 +41,7 @@ for page in content:
         outfile.write(', "Organization": "'+organization.get_text()+'"')
     outfile.write(', "Population": "LGBTQ"')
     outfile.write(', "datafromresource": "lgbtfundersorg"')
+    outfile.write(', "URL": "'+url+'"')
     outfile.write('}\n')
     index += 1
 outfile.close()

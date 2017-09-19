@@ -5,14 +5,10 @@ from bs4 import BeautifulSoup as BS
 import json
 import datetime
 
-topics = ["advocacy-lobbying","boards-governance","ceo-leadership-development","development-gift-management","disaster-grantmaking-0",
-          "diversity-inclusion","donor-advised-funds","ethics-accountability","expenditure-responsibility","financial-management",
-          "foundation-lifecycle","foundation-management","funds-management","global-grantmaking","grants-management","impact-investing-0",
-          "investment-spending-policies","marketing-communications","nonmonetary-grants","partnerships-collaboration","grants-individuals",
-          "self-dealing","tax-filing-audits"]
+topics = ["advocacy-lobbying","boards-governance","ceo-leadership-development","development-gift-management","disaster-grantmaking-0","diversity-inclusion","donor-advised-funds","ethics-accountability","expenditure-responsibility","financial-management","foundation-lifecycle","foundation-management","funds-management","global-grantmaking","grants-management","impact-investing-0","investment-spending-policies","marketing-communications","nonmonetary-grants","partnerships-collaboration","grants-individuals","self-dealing","tax-filing-audits"]
 for topic in topics:
     entries = 1
-    filename = "../Data/CounFound/UploadData_"+topic.replace('-','')+".json"
+    filename = "../Data/CounFound_"+topic.replace('-','')+"_Upload.json"
     outfile = open(filename,"w")
     pagenumber = 0
     while True:
@@ -34,6 +30,8 @@ for topic in topics:
             if description:
                 outfile.write(', "Description": "'+description.get_text().replace('"','').replace('\n','')+'"')
             outfile.write(', "datafromresource": "councilonfoundationsorg"')
+            item_url = "https://www.cof.org"+title.get('href')
+            outfile.write(', "URL": "'+item_url+'"')
             outfile.write('}\n')
             entries += 1
         if not(parsed.find_all('li',class_="next")):

@@ -7,7 +7,7 @@ import datetime
 
 # Main publications
 entries = 1
-outfile = open("../Data/PeakGrant/UploadData.json","w")
+outfile = open("../Data/PeakGrant_Upload.json","w")
 url1 = "https://www.peakgrantmaking.org/publications/"
 page = requests.get(url1)
 parsed = BS(page.content, 'html.parser')
@@ -31,7 +31,7 @@ outfile.close()
 
 # Archived publications
 entries2 = 1
-outfile2 = open("PeakGrantmakingArchived.json","w")
+outfile2 = open("../Data/PeakGrant_Archived_Upload.json","w")
 url2 = "https://www.peakgrantmaking.org/about/news/archived-publications/"
 page2 = requests.get(url2)
 parsed2 = BS(page2.content, 'html.parser')
