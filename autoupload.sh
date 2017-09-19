@@ -1,23 +1,22 @@
 #!/bin/bash
 
-ScrapedFiles=Data/*
+ScrapedFiles="$(ls Data/)"
 UploadURL="https://search-sectorsearch-7xx3kcc77prfjydwdcmxftyoni.us-east-1.es.amazonaws.com"
 
-for s in $UploadFiles
+for s in $ScrapedFiles
 do
     i="$(basename $s .json)"
-    index="$(awk -F_ '{print $1}' ${i})"
-    echo $index
-#    uploadfile="$(echo ${i} | awk '{print tolower($0)}' | grep -v .json)"
-#    echo ${UploadURL}"/"${uploadfile}
+    upload="$(echo ${i} | awk -F_ '{print $NF}')"
+    if [ "${upload}" == "Upload" ]; then
+        index="$(echo ${i} | awk -F_ '{print $1}')"
+        topic="$(echo ${i} | awk -F_ '{print $2}')"
+        if [ "${topic}" == "Upload" ]; then
+            topic="data"
+        fi
+        upinfo="${index}/${topic}"
+        URLAddition="$(echo ${upinfo} | awk '{print tolower($0)}')"
+        URL="${UploadURL}/${URLAddition}/_bulk"
+        echo ${URL}
+    fi
 done
 
-
-#declare -a issues=("Aging" "AgricultureandFood" "AnimalWelfare" "ArtsandCulture" "AthleticsandSports" "ChildrenandYouth" "CivilSociety" "CommunityandEconomicDevelopment" "ComputersandTechnology" \
-#"ConsumerProtection" "CrimeandSafety" "Disabilities" "EducationandLiteracy" "EmploymentandLabor" "EnergyandEnvironment" "GovernmentReform" "Health" "HousingandHomelessness" "HumanRightsandCivilLiberties" \
-#"HumanitarianandDisasterRelief" "Hunger" "Immigration" "InternationalDevelopment" "JournalismandMedia" "Men" "NonprofitsandPhilanthropy" "ParentingandFamilies" "PeaceandConflict" "Poverty" \
-#"PrisonandJudicialReform" "RaceandEthnicity" "Religion" "Science" "SubstanceAbuseandRecovery" "Transportation" "WelfareandPublicAssistance" "Women")
-#for i in "${issues[@]}"
-#do
-#    echo $i
-#done
