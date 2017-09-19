@@ -4,7 +4,7 @@ SOURCES=Data/*
 
 for s in $SOURCES
 do
-    i="$(basename $s Upload.json)"
+    i="$(basename $s _Upload.json)"
     echo ${i} | awk '{print tolower($0)}'
 done
 
