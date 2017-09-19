@@ -4,7 +4,7 @@ SOURCES=Scrapers/*
 
 for s in $SOURCES
 do
-    i="$(basename $s Upload.py)"
+    i="$(basename $s Upload.json)"
     echo ${i} | awk '{print tolower($0)}'
 done
 
