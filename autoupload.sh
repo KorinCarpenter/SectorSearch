@@ -6,7 +6,8 @@ UploadURL="https://search-sectorsearch-7xx3kcc77prfjydwdcmxftyoni.us-east-1.es.a
 for s in $UploadFiles
 do
     i="$(basename $s _Upload.json)"
-    echo ${i} | awk '{print tolower($0)}' | grep -v .json
+    uploadfile="$(echo ${i} | awk '{print tolower($0)}' | grep -v .json)"
+    echo ${UploadURL}"/"${uploadfile}
 done
 
 
