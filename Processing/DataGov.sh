@@ -1,10 +1,10 @@
 #!/bin/bash
 
 count=1
-for ((i=172000;i<198000;i+=1000))
+for ((i=0;i<198000;i+=1000))
 do
-  infile='../Data/DataGov/ScrapedData_'$i'.json'
-  outfile='../Data/DataGov/UploadData_'$i'.json'
+  infile='../Data/DataGov_'$i'_Scraped.json'
+  outfile='../Data/DataGov_'$i'_Upload.json'
   sed 's/.*results": \[//' $infile > Step$i.json
 
   ./DataGov.pl Step$i.json > temp$i.json
