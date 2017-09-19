@@ -1,11 +1,11 @@
 #!/bin/bash
 
-SOURCES=Data/*
+UploadFiles=Data/*
 
-for s in $SOURCES
+for s in $UploadFiles
 do
     i="$(basename $s _Upload.json)"
-    echo ${i} | awk '{print tolower($0)}'
+    echo ${i} | awk '{print tolower($0)}' | grep -v .json
 done
 
 
