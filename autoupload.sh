@@ -17,7 +17,7 @@ do
         URLAddition="$(echo ${upinfo} | awk '{print tolower($0)}')"
         URL="${UploadURL}/${URLAddition}/_bulk"
         upfile="./Data/$s"
-        curl -XPOST ${URL} --data-binary @${upfile}
+        curl -sS -XPOST ${URL} --data-binary @${upfile}
         sleep 15
     fi
 done | sed 's/,{"index":/\n,{"index":/g'
