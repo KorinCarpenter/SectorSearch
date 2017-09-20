@@ -20,6 +20,6 @@ do
         curl -sS -XPOST ${URL} --data-binary @${upfile}
         sleep 15
     fi
-done | sed 's/,{"index":/\n,{"index":/g'
+done | sed 's/,{"index":/\n,{"index":/g' > esupload.log
 # > /dev/null 2>&1
 
