@@ -29,3 +29,5 @@ do
     done
   } > $outfile
 done
+rm ../Data/IssueLab_*_Scraped.json
+

@@ -24,4 +24,4 @@ do
       ((count++))
   done > $outfile
 done
-rm Step* temp*
+rm Step* temp* ../Data/DataGov_*_Scraped.json
