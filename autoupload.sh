@@ -20,6 +20,6 @@ do
         curl -sS -XPOST ${URL} --data-binary @${upfile}
         sleep 15
     fi
-done | sed 's/,{"index":/\n,{"index":/g' > esupload.log
+done | sed 's/{"index":/\n{"index":/g' | sed 's/{"took":/\n{"took":/g' | awk '{ if (/\"status\":400/) { print > "Logs/error.log" } else { print > "Logs/success.log" } }'
 # > /dev/null 2>&1
 
