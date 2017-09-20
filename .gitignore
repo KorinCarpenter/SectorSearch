@@ -1,1 +1,6 @@
+# Storage location for data
 /Data/
+
+# Logging files
+*.out
+*.log
