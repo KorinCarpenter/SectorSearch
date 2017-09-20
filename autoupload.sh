@@ -18,8 +18,9 @@ do
         URL="${UploadURL}/${URLAddition}/_bulk"
         upfile="./Data/$s"
         echo "${URL}    ${upfile}"
-        sleep 0.5
+        sleep 30
 #        curl -XPOST ${URL} --data-binary @${upfile}
     fi
-done > /dev/null 2>&1
+done
+# > /dev/null 2>&1
 
