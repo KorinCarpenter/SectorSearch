@@ -17,7 +17,7 @@ while True:
     content = parsed.find_all('div',class_="content clearfix")
     for entry in range(0,len(title)):
         outfile.write('{"index":{"_id":"'+str(entries)+'"}}\n')
-        outfile.write('{"Source_Title": "'+title[entry].get_text()+'"')
+        outfile.write('{"Source_Title": "'+title[entry].get_text().replace('"','')+'"')
         corrected_entry = entry + 4
         publication_date = ""
         final_date = ""
