@@ -16,6 +16,8 @@ do
   sed 's/"format":/"Source_Format":/g' |
   sed 's/"metadata_create":/"publicationDate":/g' |
   sed 's/"title":/"Source_Title":/g' |
+  sed 's/"\[{/\[{/g' |
+  sed 's/}\]"/}\]/g' |
 
   while read line
     do
