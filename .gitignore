@@ -1,0 +1,5 @@
+# Directory for data
+/Data/
+
+# Output file from nohup run
+*.out
