@@ -1,0 +1,5 @@
+Create AWS EC2 Instance running Amazon Linux with port 22 open to admin IP addresses, and ports 80 and 443 open to all traffic.
+Need low storage, low compute power, medium ram, high throughput.
+Install Apache and configure webserver, and place the Website.html file from the FrontEnd folder of the GitHub repository into the /var/html folder.
+Start the Apache service (“service httpd start” if I remember correctly) and connect to the IP or designated endpoint of the webserver, and you should be good to go.
+

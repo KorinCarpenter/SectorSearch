@@ -1,0 +1,9 @@
+Create AWS EC2 Instance running Amazon Linux with ports 22, 80, and 443 open to admin IP addresses.
+    Need high storage (data is stored before being uploaded), high compute power (some data processing is needed), low ram, high throughput (data is being pulled from and pushed to remote locations).
+Run “sudo yum update -y” to update all packages. From here on out all installations will be handled using “sudo yum install” unless otherwise noted.
+Run “git clone https://github.com/KorinCarpenter/SectorSearch.git” to clone the current stable version of the scraping, processing, and upload scripts.
+Run “cd SectorSearch/Scrapers” to change into the directory with all the scraping scripts.
+For each script, run “./<scriptname>.py” and wait for them to finish obtaining the data.
+Change to the processing directory (“cd ../Processing”) and run all the shell scripts, “./<scriptname>.sh”.
+Change to the main directory (“cd ..”) and run the upload script “autoupload.sh”.
+    Note: this will upload to whatever the default Elasticsearch Service. In order to change this, copy and paste the AWS ES Endpoint url into the UploadURL variable.
